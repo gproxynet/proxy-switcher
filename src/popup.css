@@ -87,6 +87,7 @@ button { font: inherit; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .grid .full { grid-column: 1 / -1; }
 .grid label { display: flex; flex-direction: column; gap: 4px; font-size: 11px; color: var(--muted); }
+.grid label .hint { color: #5b6270; font-weight: 400; }
 .grid input, .grid select {
   background: var(--bg); border: 1px solid var(--line); color: var(--text);
   border-radius: 7px; padding: 7px 8px; font: inherit; width: 100%;

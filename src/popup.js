@@ -3,18 +3,10 @@ import {
   getState, saveProfiles, setActiveId, findProfile, newId,
 } from "./storage.js";
 
-// --- Branding / provider point (edit these two to rebrand the extension) ----
+// Works with ANY proxy provider. This single link (footer) is the only
+// provider mention — swap it to point the referral elsewhere.
 const PROVIDER_URL =
   "https://gproxy.net/?utm_source=chrome&utm_medium=extension&utm_campaign=proxy-switcher";
-const GPROXY_PRESET = {
-  name: "GProxy",
-  color: "#14b8a6",
-  scheme: "http",
-  host: "",
-  port: "",
-  hint: "Paste host:port:user:pass from your GProxy dashboard",
-};
-// ---------------------------------------------------------------------------
 
 const $ = (id) => document.getElementById(id);
 const listEl = $("list");
@@ -35,14 +27,24 @@ function render() {
   rows.push(row({ id: DIRECT, name: "Direct (no proxy)", color: "#8b93a3" }, active, false));
   rows.push(row({ id: SYSTEM, name: "Use system settings", color: "#8b93a3" }, active, false));
 
-  if (state.profiles.length) rows.push(sep("Your proxies"));
-  for (const p of state.profiles) rows.push(row(p, active, true));
-
-  rows.push(sep("Quick add"));
-  rows.push(presetRow());
+  if (state.profiles.length) {
+    rows.push(sep("Your proxies"));
+    for (const p of state.profiles) rows.push(row(p, active, true));
+  } else {
+    rows.push(emptyHint());
+  }
 
   listEl.replaceChildren(...rows);
   updateStatus();
+}
+
+function emptyHint() {
+  const li = document.createElement("li");
+  li.className = "sep";
+  li.style.textTransform = "none";
+  li.style.letterSpacing = "0";
+  li.textContent = "No proxies yet — click + Add to create one.";
+  return li;
 }
 
 function sep(text) {
@@ -87,20 +89,6 @@ function row(profile, activeId, editable) {
   return li;
 }
 
-function presetRow() {
-  const li = document.createElement("li");
-  li.className = "item";
-  const dot = document.createElement("span");
-  dot.className = "dot";
-  dot.style.background = GPROXY_PRESET.color;
-  const name = document.createElement("span");
-  name.className = "name";
-  name.textContent = `+ Add ${GPROXY_PRESET.name} proxy`;
-  li.append(dot, name);
-  li.addEventListener("click", () => openForm(null, GPROXY_PRESET));
-  return li;
-}
-
 function updateStatus() {
   const active =
     state.activeId === DIRECT ? { name: "Direct", color: "#8b93a3" } :
@@ -119,15 +107,14 @@ async function switchTo(id) {
 }
 
 // --- add / edit form --------------------------------------------------------
-function openForm(profile, preset) {
-  $("form-title").textContent = profile ? "Edit proxy" : `Add ${preset?.name || "proxy"}`;
+function openForm(profile) {
+  $("form-title").textContent = profile ? "Edit proxy" : "Add proxy";
   $("f-id").value = profile?.id || "";
-  $("f-name").value = profile?.name || preset?.name || "";
-  $("f-scheme").value = profile?.scheme || preset?.scheme || "http";
-  $("f-color").value = profile?.color || preset?.color || "#14b8a6";
-  $("f-host").value = profile?.host || preset?.host || "";
-  $("f-host").placeholder = preset?.hint || "gate.example.com";
-  $("f-port").value = profile?.port || preset?.port || "";
+  $("f-name").value = profile?.name || "";
+  $("f-scheme").value = profile?.scheme || "http";
+  $("f-color").value = profile?.color || randomColor();
+  $("f-host").value = profile?.host || "";
+  $("f-port").value = profile?.port || "";
   $("f-user").value = profile?.username || "";
   $("f-pass").value = profile?.password || "";
   $("f-bypass").value = (profile?.bypassList || DEFAULT_BYPASS).join(", ");
@@ -140,6 +127,12 @@ function closeForm() {
   formEl.classList.add("hidden");
   document.body.classList.remove("form-open");
   formEl.reset();
+}
+
+// A distinct dot color per new profile so the list is easy to scan.
+function randomColor() {
+  const palette = ["#14b8a6", "#6366f1", "#f59e0b", "#ec4899", "#22c55e", "#38bdf8", "#a855f7", "#ef4444"];
+  return palette[state.profiles.length % palette.length];
 }
 
 // Let the user paste a full "host:port:user:pass" (or a URL) into Host and

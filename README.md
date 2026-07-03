@@ -31,11 +31,11 @@ The service worker sets `chrome.proxy.settings` to `fixed_servers` for the activ
 
 ## Proxies
 
-Works with any provider. The popup ships a one-click **GProxy** quick-add — paste your `host:port:user:pass` from the [GProxy dashboard](https://gproxy.net/?utm_source=chrome&utm_medium=extension&utm_campaign=proxy-switcher) and you're set. Residential, mobile and datacenter proxies all work the same way; any other provider works too.
+Provider-agnostic — use **any** proxy, from any source. Paste a `host:port:user:pass` (or `scheme://user:pass@host:port`) string into the Host field and the form fills itself; residential, mobile, datacenter, SOCKS — all work the same way. The single link in the footer is an optional pointer to a proxy provider; ignore it if you already have proxies.
 
 ## Rebranding
 
-Everything provider-specific is two constants at the top of `src/popup.js` — `PROVIDER_URL` and `GPROXY_PRESET`. Swap them (and the icons) to point the extension at a different provider.
+The only provider-specific value is the `PROVIDER_URL` constant at the top of `src/popup.js` (the footer link). Swap it (and the icons) to point elsewhere.
 
 ## License
 
