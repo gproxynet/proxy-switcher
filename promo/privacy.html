@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Privacy Policy — Proxy Switcher &amp; Manager</title>
+<style>
+  body{max-width:720px;margin:40px auto;padding:0 20px;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1c1e24;background:#fff}
+  h1{font-size:28px;margin:0 0 4px}h2{font-size:19px;margin:28px 0 8px}
+  .date{color:#6b7280;margin-bottom:24px}code{background:#f1f3f7;padding:1px 5px;border-radius:4px;font-size:14px}
+  ul{padding-left:20px}li{margin:6px 0}a{color:#4f46e5}
+  @media(prefers-color-scheme:dark){body{background:#0f1115;color:#e7e9ee}code{background:#1e222b}}
+</style>
+</head>
+<body>
+<h1>Privacy Policy — Proxy Switcher &amp; Manager</h1>
+<div class="date">Last updated: 3 July 2026</div>
+
+<p>Proxy Switcher &amp; Manager is built to collect as little as possible.</p>
+
+<h2>What the extension stores</h2>
+<ul>
+  <li><strong>Proxy profiles you create</strong> (name, host, port, scheme, optional username/password, bypass list, detected country/city) are stored <strong>locally</strong> on your device via <code>chrome.storage.local</code>. They never leave your browser and are not transmitted to us or any third party.</li>
+</ul>
+
+<h2>What the extension sends</h2>
+<ul>
+  <li><strong>Proxy credentials</strong> are sent only to the proxy server <em>you</em> configured, and only when that proxy requests authentication — exactly as if you typed them into your operating-system proxy settings.</li>
+  <li><strong>IP check</strong>: when the popup is open, the extension requests your current public IP and approximate location from the third-party service <code>ipwho.is</code> so it can show which exit you are on. Nothing is stored.</li>
+  <li><strong>Proxy geo detection</strong> (optional): when you add or import a proxy with auto-detect enabled, the extension asks <code>ipwho.is</code> for the country and city of that proxy's host, purely to label it with a flag. Only the proxy host/IP you entered is sent; only the country code and city are kept, stored locally with your profile. Uncheck "Auto-detect" to skip these lookups entirely.</li>
+</ul>
+
+<h2>What we do NOT do</h2>
+<ul>
+  <li>No analytics, telemetry, advertising, or user tracking.</li>
+  <li>No collection of browsing history, page content, or form data.</li>
+  <li>No remote code execution; all code ships inside the extension package.</li>
+  <li>No selling or sharing of any user data.</li>
+</ul>
+
+<h2>Contact</h2>
+<p>Questions: <a href="mailto:support@gproxy.net">support@gproxy.net</a></p>
+</body>
+</html>
