@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>Proxy Switcher</title>
+  </head>
+  <body>
+    <header class="head">
+      <div class="brand">
+        <img src="../icons/icon32.png" width="20" height="20" alt="" />
+        <span>Proxy Switcher</span>
+      </div>
+      <button id="add-btn" class="ghost" title="Add proxy profile">+ Add</button>
+    </header>
+
+    <section class="status" id="status">
+      <div class="status-row">
+        <span class="dot" id="status-dot"></span>
+        <span id="status-name">Direct</span>
+      </div>
+      <div class="ip-row">
+        <span id="ip-text" class="muted">Checking IP…</span>
+        <button id="ip-refresh" class="linklike" title="Re-check">↻</button>
+      </div>
+    </section>
+
+    <ul class="list" id="list"></ul>
+
+    <!-- Add / edit form (hidden by default) -->
+    <form class="form hidden" id="form">
+      <div class="grid">
+        <label class="full">Name<input id="f-name" required placeholder="Scraper — US" /></label>
+        <label>Type
+          <select id="f-scheme">
+            <option value="http">HTTP</option>
+            <option value="https">HTTPS</option>
+            <option value="socks5">SOCKS5</option>
+            <option value="socks4">SOCKS4</option>
+          </select>
+        </label>
+        <label>Color<input id="f-color" type="color" value="#14b8a6" /></label>
+        <label class="full">Host<input id="f-host" required placeholder="gate.example.com" /></label>
+        <label>Port<input id="f-port" type="number" min="1" max="65535" required placeholder="8000" /></label>
+        <label>User<input id="f-user" placeholder="optional" autocomplete="off" /></label>
+        <label>Password<input id="f-pass" type="password" placeholder="optional" autocomplete="off" /></label>
+        <label class="full">Bypass (comma-sep)<input id="f-bypass" placeholder="localhost, 127.0.0.1, <local>" /></label>
+      </div>
+      <div class="form-actions">
+        <button type="button" id="f-cancel" class="ghost">Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </div>
+      <input type="hidden" id="f-id" />
+    </form>
+
+    <footer class="foot">
+      <a id="get-proxies" href="#" target="_blank" rel="noopener">Need proxies? Get residential &amp; mobile →</a>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
