@@ -1,6 +1,9 @@
 // Service worker: applies the active proxy profile, supplies auth
 // credentials, and reflects state on the toolbar badge.
-import { DIRECT, SYSTEM, DEFAULT_BYPASS, getState, findProfile } from "./storage.js";
+import {
+  DIRECT, SYSTEM, DEFAULT_BYPASS,
+  getState, findProfile, setActiveId, getLastProfileId, setLastProfileId,
+} from "./storage.js";
 
 // Credentials of the currently active profile, cached for onAuthRequired
 // (the listener must answer fast and can't await storage on every callback).
@@ -41,8 +44,33 @@ async function apply(activeId) {
     profile.username || profile.password
       ? { username: profile.username || "", password: profile.password || "" }
       : null;
+  // Remember the last real proxy so the keyboard toggle can restore it.
+  if (activeId !== DIRECT && activeId !== SYSTEM) await setLastProfileId(activeId);
   await paintBadge(profile);
 }
+
+// Keyboard shortcuts: toggle proxy on/off, or force Direct.
+chrome.commands.onCommand.addListener(async (command) => {
+  const { activeId, profiles } = await getState();
+  if (command === "disable-proxy") {
+    await setActiveId(DIRECT);
+    return apply(DIRECT);
+  }
+  if (command === "toggle-proxy") {
+    const proxyOn = activeId !== DIRECT && activeId !== SYSTEM;
+    if (proxyOn) {
+      await setActiveId(DIRECT);
+      return apply(DIRECT);
+    }
+    // Turn the last used proxy back on, if it still exists.
+    const last = await getLastProfileId();
+    const target = last && findProfile(profiles, last) ? last : profiles[0]?.id;
+    if (target) {
+      await setActiveId(target);
+      return apply(target);
+    }
+  }
+});
 
 async function paintBadge(profile) {
   const on = profile.id !== DIRECT && profile.id !== SYSTEM;

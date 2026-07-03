@@ -12,7 +12,10 @@
         <img src="../icons/icon32.png" width="20" height="20" alt="" />
         <span>Proxy Switcher</span>
       </div>
-      <button id="add-btn" class="ghost" title="Add proxy profile">+ Add</button>
+      <div class="head-actions">
+        <button id="import-btn" class="ghost" title="Import a list of proxies">Import</button>
+        <button id="add-btn" class="ghost" title="Add one proxy">+ Add</button>
+      </div>
     </header>
 
     <section class="status" id="status">
@@ -54,6 +57,30 @@
       </div>
       <input type="hidden" id="f-id" />
     </form>
+
+    <!-- Bulk import view (hidden by default) -->
+    <section class="import hidden" id="import">
+      <div class="form-title">Import proxy list</div>
+      <p class="import-help">
+        One proxy per line. Any of these formats:
+        <code>host:port</code>, <code>host:port:user:pass</code>,
+        <code>user:pass@host:port</code>, <code>scheme://user:pass@host:port</code>.
+        A leading <code>country,city,</code> label is used as the name.
+      </p>
+      <textarea id="import-text" rows="7" spellcheck="false"
+        placeholder="203.0.113.10:8000&#10;user:pass@203.0.113.11:8000&#10;socks5://203.0.113.12:1080&#10;US,New York,203.0.113.13:8000:user:pass"></textarea>
+      <label class="detect-row">
+        <input type="checkbox" id="import-detect" checked />
+        Auto-detect country &amp; city (looks up each IP)
+      </label>
+      <div class="form-actions import-actions">
+        <label class="ghost file-btn">From file…<input type="file" id="import-file" accept=".txt,.csv,text/plain" hidden /></label>
+        <span class="spacer"></span>
+        <button type="button" id="import-cancel" class="ghost">Cancel</button>
+        <button type="button" id="import-go" class="primary">Import</button>
+      </div>
+      <div class="import-status muted" id="import-status"></div>
+    </section>
 
     <footer class="foot">
       <a id="get-proxies" href="#" target="_blank" rel="noopener">Need proxies? Get residential &amp; mobile →</a>

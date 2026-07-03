@@ -14,6 +14,8 @@
  * @property {string} [username]
  * @property {string} [password]
  * @property {string[]} bypassList hosts that skip the proxy
+ * @property {string} [countryCode] ISO alpha-2, for the flag (auto-detected)
+ * @property {string} [city] auto-detected city
  */
 
 export const DIRECT = "direct";
@@ -32,6 +34,24 @@ export async function saveProfiles(profiles) {
 
 export async function setActiveId(activeId) {
   await chrome.storage.local.set({ activeId });
+}
+
+export async function getLastProfileId() {
+  const { lastProfileId } = await chrome.storage.local.get("lastProfileId");
+  return lastProfileId || null;
+}
+
+export async function setLastProfileId(lastProfileId) {
+  await chrome.storage.local.set({ lastProfileId });
+}
+
+// ISO alpha-2 country code -> flag emoji (regional indicator letters).
+export function flagEmoji(cc) {
+  if (!cc || cc.length !== 2) return "";
+  const base = 0x1f1e6;
+  return String.fromCodePoint(
+    ...[...cc.toUpperCase()].map((c) => base + c.charCodeAt(0) - 65)
+  );
 }
 
 export function findProfile(profiles, id) {
