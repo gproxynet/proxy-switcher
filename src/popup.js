@@ -120,6 +120,7 @@ async function switchTo(id) {
 
 // --- add / edit form --------------------------------------------------------
 function openForm(profile, preset) {
+  $("form-title").textContent = profile ? "Edit proxy" : `Add ${preset?.name || "proxy"}`;
   $("f-id").value = profile?.id || "";
   $("f-name").value = profile?.name || preset?.name || "";
   $("f-scheme").value = profile?.scheme || preset?.scheme || "http";
@@ -131,13 +132,13 @@ function openForm(profile, preset) {
   $("f-pass").value = profile?.password || "";
   $("f-bypass").value = (profile?.bypassList || DEFAULT_BYPASS).join(", ");
   formEl.classList.remove("hidden");
-  listEl.classList.add("hidden");
+  document.body.classList.add("form-open");
   $("f-name").focus();
 }
 
 function closeForm() {
   formEl.classList.add("hidden");
-  listEl.classList.remove("hidden");
+  document.body.classList.remove("form-open");
   formEl.reset();
 }
 
@@ -225,8 +226,8 @@ async function checkIp() {
     const d = await r.json();
     if (d && d.success !== false && d.ip) {
       const place = [d.city, d.country].filter(Boolean).join(", ");
-      const isp = d.connection?.isp ? ` · ${d.connection.isp}` : "";
-      el.textContent = `${d.ip}${place ? " · " + place : ""}${isp}`;
+      const bits = [d.ip, place, d.connection?.isp].filter(Boolean);
+      el.textContent = bits.join(" · ");
     } else {
       el.textContent = "IP lookup unavailable";
     }
