@@ -38,7 +38,8 @@ rm -f dist/proxy-switcher-v0.1.0.zip && zip -rq dist/proxy-switcher-v0.1.0.zip m
 
 **Data collected:** None sent to the developer. (The optional geolocation lookup to `ipwho.is` is disclosed in the privacy policy; it is a functional third-party call, no developer-side collection.)
 
-**Privacy policy URL:** _<< host `promo/privacy.html` and paste the URL here >>_
+**Privacy policy URL:** https://gproxy.net/static/proxy-switcher-privacy.html
+(deployed 2026-07-03 as a static file in `/root/proxy_service/staticfiles/` on 149 — no nginx/gunicorn change; revert with `rm` of that file.)
 
 ## After publishing
 - Add the Store link to gproxy.net (footer/docs) for the entity-trust backlink.
