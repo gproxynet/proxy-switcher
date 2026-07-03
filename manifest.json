@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Proxy Switcher — one-click proxy manager",
+  "name": "Proxy Switcher & Manager: SOCKS5, HTTP, Bulk Import",
   "version": "0.1.0",
-  "description": "Switch between proxy profiles in one click. HTTP/HTTPS/SOCKS with auth, per-profile bypass rules, live IP check. Built for scrapers & multi-account work.",
+  "description": "Switch HTTP, HTTPS & SOCKS5 proxies in one click. Bulk-import lists, auto country flags, hotkeys. Fast proxy switcher & manager.",
   "permissions": ["proxy", "storage", "webRequest", "webRequestAuthProvider"],
   "host_permissions": ["<all_urls>"],
   "background": {
