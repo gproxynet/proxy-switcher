@@ -52,6 +52,12 @@ Provider-agnostic — use **any** proxy, from any source. Paste a `host:port:use
 
 The only provider-specific value is the `PROVIDER_URL` constant at the top of `src/popup.js` (the footer link). Swap it (and the icons) to point elsewhere.
 
+## Related tools
+
+- [proxyspin](https://github.com/gproxynet/proxyspin) — rotating proxy pool for Scrapy, Playwright & requests
+- [free-proxy-list](https://github.com/gproxynet/free-proxy-list) — a fresh sample of live public proxies, refreshed every 30 minutes
+- Need proxies that actually work? [gproxy.net](https://gproxy.net/?utm_source=github&utm_medium=repo&utm_campaign=proxy-switcher) — residential, mobile & an unlimited public pool
+
 ## License
 
 MIT
