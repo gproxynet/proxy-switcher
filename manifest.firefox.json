@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Proxy Switcher & Manager: SOCKS5, HTTP",
+  "version": "0.1.0",
+  "description": "Switch HTTP, HTTPS & SOCKS5 proxies in one click. Bulk-import lists, auto country flags, hotkeys. Fast proxy switcher & manager.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "proxy-switcher@gproxy.net",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "permissions": ["proxy", "storage", "webRequest", "webRequestBlocking"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "scripts": ["src/background.firefox.js"]
+  },
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "Proxy Switcher",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "toggle-proxy": {
+      "suggested_key": { "default": "Ctrl+Shift+X" },
+      "description": "Toggle proxy on/off (last used profile <-> Direct)"
+    },
+    "disable-proxy": {
+      "suggested_key": { "default": "Ctrl+Shift+Z" },
+      "description": "Disable proxy (Direct connection)"
+    }
+  }
+}
