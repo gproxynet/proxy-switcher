@@ -3,15 +3,20 @@
 ## Name (75 char max) — 51
 Proxy Switcher & Manager: SOCKS5, HTTP, Bulk Import
 
-## Summary / short description (132 char max) — 128
-Switch HTTP, HTTPS & SOCKS5 proxies in one click. Bulk-import lists, auto country flags, hotkeys. Fast proxy switcher & manager.
+## Summary / short description (132 char max) — 122
+Switch HTTP, HTTPS & SOCKS5 proxies in one click. Bulk-import your proxy list, auto country flags, hotkeys, bypass rules.
 
 ## Category
 Developer Tools
 
-## Primary keywords (in priority order — repeat naturally in the body)
+## Primary keywords (INTERNAL ONLY — never paste into the listing!)
 proxy switcher · proxy manager · socks5 proxy · proxy extension · chrome proxy
 extension · proxy list import · http proxy · proxy changer · rotating proxy
+
+⚠️ CWS rejection 2026-07-08 (violation "Yellow Argon", keyword spam): a trailing
+"Keywords: ..." line in the description got the listing rejected. Keywords may
+only appear woven into natural sentences — no comma-separated lists anywhere in
+name, summary or description.
 
 ## Detailed description (listing body)
 Proxy Switcher & Manager is a fast, no-nonsense proxy switcher for Chrome. Switch
@@ -42,9 +47,6 @@ configured, only when it asks for them.
 ★ WORKS WITH ANY PROVIDER
 Use any proxy from any source — residential, mobile, datacenter or your own
 servers. Paste your list and go.
-
-Keywords: proxy switcher, proxy manager, socks5 proxy, http proxy, proxy
-extension, chrome proxy, proxy changer, proxy list, rotating proxy, proxy tool.
 
 ## Screenshot plan (1280×800, 5 tiles — annotated like top competitors)
 1. Hero — popup with an active proxy + flags in the list. Caption: "Switch proxies in one click."

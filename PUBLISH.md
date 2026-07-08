@@ -9,7 +9,8 @@ rm -f dist/proxy-switcher-v0.1.0.zip && zip -rq dist/proxy-switcher-v0.1.0.zip m
 
 ## Store listing fields (paste from STORE_LISTING.md)
 - **Name:** Proxy Switcher & Manager: SOCKS5, HTTP, Bulk Import
-- **Summary (132):** Switch HTTP, HTTPS & SOCKS5 proxies in one click. Bulk-import lists, auto country flags, hotkeys. Fast proxy switcher & manager.
+- **Summary (132):** Switch HTTP, HTTPS & SOCKS5 proxies in one click. Bulk-import your proxy list, auto country flags, hotkeys, bypass rules.
+- ⚠️ No "Keywords: ..." lists anywhere in the listing — got rejected for keyword spam 2026-07-08 (see STORE_LISTING.md). Same rule applies to Edge Add-ons and AMO submissions.
 - **Category:** Developer Tools
 - **Language:** English
 - **Detailed description:** the body in `STORE_LISTING.md`.
